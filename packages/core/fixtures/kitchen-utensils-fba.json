@@ -1,0 +1,19 @@
+{
+  "_note": "EXAMPLE INPUTS for tests and demos — illustrative supplier/market numbers, not live data.",
+  "playbook": "fba-private-label",
+  "asOf": "2026-10-10",
+  "product": {
+    "name": "Silicone kitchen utensil set (12 pc)",
+    "complianceCategory": "kitchen-food-contact",
+    "htsCode": "3924.10.40.00",
+    "origin": "CN"
+  },
+  "supplier": { "unitCost": 4.1, "moq": 1000, "packagingPerUnit": 0.6, "inspectionFlat": 300, "samplesFlat": 80, "productionDays": 30, "depositPct": 30 },
+  "carton": { "lengthCm": 60, "widthCm": 40, "heightCm": 40, "weightKg": 14, "unitsPerCarton": 20 },
+  "unitPackage": { "lengthIn": 14, "widthIn": 6, "heightIn": 3.5, "weightLb": 1.6 },
+  "freight": { "mode": "auto" },
+  "sales": { "price": 32.99, "unitsPerMonth": 300, "tacosPct": 12, "returnRatePct": 3 },
+  "market": { "monthlySearches": 22000, "medianReviewsTop10": 1800, "reviewGrowthPct90d": 9, "priceErosionPct90d": -2, "searchTrendPct12m": 6 },
+  "compliance": { "certsHeld": ["fda-food-contact", "prop65"] },
+  "timing": { "targetLiveDate": "2027-03-01" }
+}

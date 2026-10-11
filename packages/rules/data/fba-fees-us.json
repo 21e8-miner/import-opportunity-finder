@@ -1,0 +1,82 @@
+{
+  "dataset": "amazon-fba-fees-us",
+  "updatedAt": "2026-10-10",
+  "notes": [
+    "Seeded from the 2025 US rate card ($10–$50 price band) with the published 2026-01-15 average adjustments layered on as per-tier deltas.",
+    "Averages are not exact per-weight-step fees. verified=false until replaced with the full 2026 rate card from Seller Central.",
+    "Weights in ounces; dimensions in inches (Amazon's units)."
+  ],
+  "tierLimits": {
+    "smallStandard": { "maxLongestIn": 15, "maxMedianIn": 12, "maxShortestIn": 0.75, "maxOz": 16 },
+    "largeStandard": { "maxLongestIn": 18, "maxMedianIn": 14, "maxShortestIn": 8, "maxOz": 320 },
+    "dimDivisor": 139
+  },
+  "rateCards": [
+    {
+      "id": "fba.us.2025",
+      "effectiveFrom": "2025-01-15",
+      "effectiveTo": "2026-01-15",
+      "source": "Amazon US FBA rate card 2025 (non-peak)",
+      "verified": false,
+      "smallStandard": [
+        { "maxOz": 2, "fee": 3.06 }, { "maxOz": 4, "fee": 3.15 }, { "maxOz": 6, "fee": 3.24 }, { "maxOz": 8, "fee": 3.33 },
+        { "maxOz": 10, "fee": 3.43 }, { "maxOz": 12, "fee": 3.53 }, { "maxOz": 14, "fee": 3.6 }, { "maxOz": 16, "fee": 3.65 }
+      ],
+      "largeStandard": [
+        { "maxOz": 4, "fee": 3.68 }, { "maxOz": 8, "fee": 3.9 }, { "maxOz": 12, "fee": 4.15 }, { "maxOz": 16, "fee": 4.55 },
+        { "maxOz": 20, "fee": 4.99 }, { "maxOz": 24, "fee": 5.37 }, { "maxOz": 28, "fee": 5.52 }, { "maxOz": 32, "fee": 5.77 },
+        { "maxOz": 36, "fee": 5.87 }, { "maxOz": 40, "fee": 6.05 }, { "maxOz": 44, "fee": 6.21 }, { "maxOz": 48, "fee": 6.62 }
+      ],
+      "largeStandardOver3lb": { "base": 6.92, "per4ozAbove3lb": 0.08 },
+      "largeBulky": { "base": 9.61, "perLbAbove1": 0.38 },
+      "priceBandDelta": {
+        "under10": { "smallStandard": -0.77, "largeStandard": -0.77, "largeBulky": 0 },
+        "over50": { "smallStandard": 0.26, "largeStandard": 0.4, "largeBulky": 0 }
+      }
+    },
+    {
+      "id": "fba.us.2026",
+      "inheritsFrom": "fba.us.2025",
+      "effectiveFrom": "2026-01-15",
+      "effectiveTo": null,
+      "source": "Amazon 2026 US fee changes (announced averages, effective 2026-01-15)",
+      "verified": false,
+      "tierDelta": {
+        "under10": { "smallStandard": 0.12, "largeStandard": 0, "largeBulky": 0 },
+        "10to50": { "smallStandard": 0.25, "largeStandard": 0.05, "largeBulky": 0 },
+        "over50": { "smallStandard": 0.31, "largeStandard": 0.31, "largeBulky": 0 }
+      }
+    }
+  ],
+  "surcharges": [
+    { "id": "fba.us.fuel-logistics-2026", "label": "Fuel & logistics surcharge", "pctOfFulfillment": 3.5, "effectiveFrom": "2026-04-17", "effectiveTo": null, "source": "Amazon seller announcement", "verified": false }
+  ],
+  "peak": [
+    { "id": "fba.us.peak-2026", "effectiveFrom": "2026-10-15", "effectiveTo": "2027-01-15", "perUnitAdd": { "smallStandard": 0.3, "largeStandard": 0.5, "largeBulky": 1.5 }, "source": "Amazon holiday peak fulfillment fee window (adders are estimates)", "verified": false }
+  ],
+  "referral": {
+    "defaultPct": 15,
+    "minFee": 0.3,
+    "source": "Amazon US referral fee schedule",
+    "verified": false,
+    "categories": {
+      "electronics-accessories": { "pct": 15, "note": "8% above $100 portion" },
+      "consumer-electronics": { "pct": 8 },
+      "home-kitchen": { "pct": 15 },
+      "sports-outdoors": { "pct": 15 },
+      "toys-games": { "pct": 15 },
+      "beauty": { "pct": 8, "note": "8% at or below $10, 15% above", "pctAbove10": 15 },
+      "apparel": { "pct": 17, "note": "5% <= $15, 10% $15–$20, 17% > $20" },
+      "pet": { "pct": 15 },
+      "automotive": { "pct": 12 },
+      "baby": { "pct": 8, "note": "8% at or below $10, 15% above", "pctAbove10": 15 }
+    }
+  },
+  "storage": {
+    "source": "Amazon monthly inventory storage fees",
+    "verified": false,
+    "standardPerCuFt": { "janSep": 0.78, "octDec": 2.4 },
+    "oversizePerCuFt": { "janSep": 0.56, "octDec": 1.4 }
+  },
+  "inboundPlacement": { "standardPerUnit": 0.3, "oversizePerUnit": 1.2, "source": "Amazon inbound placement service fee (minimal-split estimate)", "verified": false }
+}

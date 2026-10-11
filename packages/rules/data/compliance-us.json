@@ -1,0 +1,172 @@
+{
+  "dataset": "compliance-rules-us",
+  "updatedAt": "2026-10-10",
+  "notes": [
+    "Compliance-first gating: evaluated before economics. 'restricted' = Pass regardless of margin until resolved; 'approval' = Amazon category/product approval required.",
+    "Each required item has an id. Deals list the cert ids they already hold (certsHeld); everything else is a gap.",
+    "This is a decision-support checklist, not legal advice. verified=false entries need review by a compliance professional."
+  ],
+  "categories": [
+    {
+      "id": "wireless-audio", "label": "Wireless earbuds / Bluetooth audio", "amazonCategory": "electronics-accessories", "gating": "none", "lithium": true, "verified": false,
+      "required": [
+        { "id": "fcc-sdoc", "label": "FCC Part 15 (intentional radiator: FCC ID via TCB; supplier grant is acceptable if module is certified)", "authority": "FCC" },
+        { "id": "un38.3", "label": "UN38.3 battery test summary", "authority": "DOT/IATA" },
+        { "id": "msds", "label": "SDS/MSDS for lithium cells", "authority": "Amazon/IATA" },
+        { "id": "prop65", "label": "Prop 65 warning assessment (CA)", "authority": "CA OEHHA" }
+      ],
+      "amazonFlags": ["hazmat_review_battery", "battery_program"],
+      "ipRisk": ["Generic stem/case designs → check Apple AirPods and Samsung design patents", "Never use 'AirPods'/'Beats' in keywords"],
+      "checklist": ["Supplier test reports (FCC/UN38.3) dated within 12 months and matching your exact model", "Submit Amazon hazmat (dangerous goods) review before creating the inbound shipment"]
+    },
+    {
+      "id": "power-banks", "label": "Power banks / lithium battery packs", "amazonCategory": "electronics-accessories", "gating": "approval", "lithium": true, "verified": false,
+      "required": [
+        { "id": "un38.3", "label": "UN38.3 battery test summary", "authority": "DOT/IATA" },
+        { "id": "msds", "label": "SDS/MSDS", "authority": "Amazon/IATA" },
+        { "id": "ul2056", "label": "UL 2056 / IEC 62133 safety test (Amazon requires for power banks)", "authority": "Amazon" },
+        { "id": "fcc-sdoc", "label": "FCC Part 15 SDoC", "authority": "FCC" }
+      ],
+      "amazonFlags": ["hazmat_class9", "category_approval"],
+      "ipRisk": ["Anker/MagSafe magnetic designs → design patents"],
+      "checklist": ["Class 9 DG: air/express shipment requires DG-capable forwarder and surcharge", "Watt-hour rating printed on the case"]
+    },
+    {
+      "id": "phone-accessories", "label": "Phone stands, cases, mounts (non-powered)", "amazonCategory": "electronics-accessories", "gating": "none", "lithium": false, "verified": false,
+      "required": [{ "id": "prop65", "label": "Prop 65 assessment (PVC/plasticizers)", "authority": "CA OEHHA" }],
+      "amazonFlags": [],
+      "ipRisk": ["MagSafe trademark — use 'magnetic' instead", "PopSockets utility patents on collapsible grips"],
+      "checklist": ["Avoid brand-compatible phrasing that implies endorsement"]
+    },
+    {
+      "id": "kitchen-food-contact", "label": "Kitchen tools / food-contact items", "amazonCategory": "home-kitchen", "gating": "none", "lithium": false, "verified": false,
+      "required": [
+        { "id": "fda-food-contact", "label": "FDA 21 CFR food-contact material compliance (e.g., silicone 177.2600)", "authority": "FDA" },
+        { "id": "prop65", "label": "Prop 65 assessment", "authority": "CA OEHHA" }
+      ],
+      "amazonFlags": [],
+      "ipRisk": ["Viral gadget designs often have pending utility patents — search USPTO before ordering"],
+      "checklist": ["LFGB/FDA test report from an accredited lab for each material", "'BPA-free' claims need a supporting test"]
+    },
+    {
+      "id": "toys-children", "label": "Toys & children's products (12 and under)", "amazonCategory": "toys-games", "gating": "approval", "lithium": false, "verified": false,
+      "required": [
+        { "id": "cpc", "label": "Children's Product Certificate (CPC)", "authority": "CPSC" },
+        { "id": "astm-f963", "label": "ASTM F963 toy safety testing at a CPSC-accepted lab", "authority": "CPSC" },
+        { "id": "cpsia-tracking-label", "label": "CPSIA permanent tracking label", "authority": "CPSC" },
+        { "id": "cpsia-lead", "label": "CPSIA lead & phthalate testing", "authority": "CPSC" }
+      ],
+      "amazonFlags": ["category_approval_q4", "safety_documentation_request"],
+      "ipRisk": ["Licensed characters → instant takedown risk"],
+      "checklist": ["Choking hazard warning for small parts (ages 3–6)", "Amazon frequently requests CPC + test report post-listing — have them before launch"]
+    },
+    {
+      "id": "baby-products", "label": "Baby & infant products", "amazonCategory": "baby", "gating": "approval", "lithium": false, "verified": false,
+      "required": [
+        { "id": "cpc", "label": "Children's Product Certificate (CPC)", "authority": "CPSC" },
+        { "id": "cpsia-lead", "label": "CPSIA lead & phthalate testing", "authority": "CPSC" },
+        { "id": "cpsia-tracking-label", "label": "CPSIA tracking label", "authority": "CPSC" },
+        { "id": "cpsc-durable-registration", "label": "Product registration card (durable infant products, 16 CFR 1130)", "authority": "CPSC", "when": "durable infant/toddler product" }
+      ],
+      "amazonFlags": ["category_approval"],
+      "ipRisk": [],
+      "checklist": ["Check for product-specific mandatory standards (sleep, bath seats, carriers)"]
+    },
+    {
+      "id": "cosmetics", "label": "Cosmetics & skincare", "amazonCategory": "beauty", "gating": "approval", "lithium": false, "verified": false,
+      "required": [
+        { "id": "mocra-registration", "label": "MoCRA facility registration (FDA Cosmetics Direct)", "authority": "FDA" },
+        { "id": "mocra-listing", "label": "MoCRA product listing incl. ingredients", "authority": "FDA" },
+        { "id": "mocra-safety-substantiation", "label": "Safety substantiation records", "authority": "FDA" },
+        { "id": "fda-cosmetic-labeling", "label": "FDA cosmetic labeling (INCI ingredients, net qty, responsible person + adverse event contact)", "authority": "FDA" }
+      ],
+      "amazonFlags": ["topicals_review", "expiration_dated"],
+      "ipRisk": ["Brand-name dupes ('inspired by …') → trademark complaints"],
+      "checklist": ["Drug claims (acne, SPF, anti-aging 'repairs') make it an OTC drug — avoid or comply with OTC monograph", "Amazon requires expiration dates for many topicals"]
+    },
+    {
+      "id": "supplements", "label": "Dietary supplements", "amazonCategory": "health", "gating": "approval", "lithium": false, "verified": false,
+      "required": [
+        { "id": "fda-dshea-labeling", "label": "DSHEA Supplement Facts labeling", "authority": "FDA" },
+        { "id": "cgmp-111", "label": "Manufacturer cGMP (21 CFR 111)", "authority": "FDA" },
+        { "id": "amazon-tic", "label": "Amazon-approved TIC lab testing", "authority": "Amazon" }
+      ],
+      "amazonFlags": ["category_approval", "tic_verification"],
+      "ipRisk": [],
+      "checklist": ["Importing finished supplements requires FDA prior notice per shipment", "No disease claims"]
+    },
+    {
+      "id": "textiles-apparel", "label": "Apparel & textiles", "amazonCategory": "apparel", "gating": "none", "lithium": false, "verified": false,
+      "required": [
+        { "id": "ftc-textile-label", "label": "FTC Textile Act label (fiber content, origin, RN/identity)", "authority": "FTC" },
+        { "id": "ftc-care-label", "label": "FTC Care Labeling Rule", "authority": "FTC" },
+        { "id": "16cfr1610", "label": "16 CFR 1610 flammability (general wearing apparel)", "authority": "CPSC" }
+      ],
+      "amazonFlags": [],
+      "ipRisk": ["Print/graphic designs → copyright claims"],
+      "checklist": ["Children's sleepwear has separate flammability standards (16 CFR 1615/1616)", "Cotton from Xinjiang → UFLPA detention risk; keep supply-chain tracing"]
+    },
+    {
+      "id": "fitness-equipment", "label": "Fitness accessories (mats, bands, rollers)", "amazonCategory": "sports-outdoors", "gating": "none", "lithium": false, "verified": false,
+      "required": [{ "id": "prop65", "label": "Prop 65 assessment (PVC/TPE/latex)", "authority": "CA OEHHA" }],
+      "amazonFlags": [],
+      "ipRisk": [],
+      "checklist": ["Latex products need allergy warning", "Weight claims must match measured product"]
+    },
+    {
+      "id": "home-organization", "label": "Home organization & storage", "amazonCategory": "home-kitchen", "gating": "none", "lithium": false, "verified": false,
+      "required": [],
+      "amazonFlags": [],
+      "ipRisk": ["Distinctive designs from Joseph Joseph/OXO → design patent check"],
+      "checklist": ["Metal content may trigger Section 232 derivative duties"]
+    },
+    {
+      "id": "led-lighting", "label": "LED lighting & strip lights (mains/USB powered)", "amazonCategory": "home-kitchen", "gating": "none", "lithium": false, "verified": false,
+      "required": [
+        { "id": "fcc-sdoc", "label": "FCC Part 15 unintentional radiator SDoC", "authority": "FCC" },
+        { "id": "ul-listing", "label": "UL/ETL listing for mains-powered adapters (strongly recommended; Amazon may require)", "authority": "Amazon/NRTL" }
+      ],
+      "amazonFlags": ["electrical_safety_review"],
+      "ipRisk": ["Philips Hue-style app ecosystems — trademark"],
+      "checklist": ["Power adapter must be certified; cheapest adapters are the #1 recall cause"]
+    },
+    {
+      "id": "pet-products", "label": "Pet accessories (non-food)", "amazonCategory": "pet", "gating": "none", "lithium": false, "verified": false,
+      "required": [{ "id": "prop65", "label": "Prop 65 assessment", "authority": "CA OEHHA" }],
+      "amazonFlags": [],
+      "ipRisk": [],
+      "checklist": ["Pet food/treats are FDA-regulated — out of scope for this category"]
+    },
+    {
+      "id": "automotive-parts", "label": "Automotive parts & accessories", "amazonCategory": "automotive", "gating": "approval", "lithium": false, "verified": false,
+      "required": [
+        { "id": "aces-pies-fitment", "label": "ACES/PIES fitment data", "authority": "Amazon/Auto Care" },
+        { "id": "epa-carb", "label": "EPA/CARB EO for emissions-related parts", "authority": "EPA/CARB", "when": "emissions-related" },
+        { "id": "dot-fmvss", "label": "DOT/FMVSS compliance (lighting, mirrors, tires)", "authority": "NHTSA", "when": "safety equipment" }
+      ],
+      "amazonFlags": ["category_approval", "fitment_required"],
+      "ipRisk": ["OEM trademarks in titles → use 'compatible with' carefully"],
+      "checklist": ["Bad fitment = high return rates; budget returns at 10%+"]
+    },
+    {
+      "id": "jewelry", "label": "Fashion jewelry", "amazonCategory": "apparel", "gating": "approval", "lithium": false, "verified": false,
+      "required": [
+        { "id": "cpsia-lead", "label": "Lead/cadmium testing (mandatory for children's jewelry; state laws for adult)", "authority": "CPSC/States" },
+        { "id": "ftc-jewelry-guides", "label": "FTC Jewelry Guides (metal/gem claims)", "authority": "FTC" }
+      ],
+      "amazonFlags": ["fine_jewelry_approval"],
+      "ipRisk": ["Designer look-alikes (Cartier/Van Cleef motifs) → trademark/trade dress"],
+      "checklist": ["'Sterling', '14k' claims require stamping + assay evidence"]
+    },
+    {
+      "id": "sunglasses", "label": "Sunglasses & eyewear", "amazonCategory": "apparel", "gating": "none", "lithium": false, "verified": false,
+      "required": [
+        { "id": "fda-impact-test", "label": "FDA impact-resistance (drop-ball) test, 21 CFR 801.410", "authority": "FDA" },
+        { "id": "uv400-test", "label": "UV400/ANSI Z80.3 test report backing UV claims", "authority": "FTC/Amazon" }
+      ],
+      "amazonFlags": ["uv_claims_review"],
+      "ipRisk": ["Ray-Ban Wayfarer trade dress"],
+      "checklist": ["FDA registration of the importer for eyewear (medical device class I)"]
+    }
+  ]
+}

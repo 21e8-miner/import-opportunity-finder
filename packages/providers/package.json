@@ -1,0 +1,8 @@
+{
+  "name": "@iof/providers",
+  "version": "0.1.0",
+  "description": "Network adapters (USITC HTS, Keepa; SerpApi/ImportYeti/SP-API on the roadmap). BYO keys. Every value carries provenance.",
+  "type": "module",
+  "license": "MIT",
+  "exports": { ".": "./src/index.ts" }
+}

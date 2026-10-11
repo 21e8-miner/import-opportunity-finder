@@ -1,0 +1,21 @@
+{
+  "dataset": "us-hts-mfn-sample",
+  "updatedAt": "2026-10-10",
+  "notes": [
+    "Offline sample of HTSUS General (MFN) column-1 rates for the fixture products only.",
+    "Live lookups go through packages/providers/src/usitc.ts (hts.usitc.gov REST, free). A user- or provider-supplied mfnRatePct always overrides this table.",
+    "verified=false: transcribed from memory/secondary sources; confirm at https://hts.usitc.gov before use."
+  ],
+  "entries": [
+    { "hts": "8518.30.20.00", "description": "Headphones and earphones (excl. telephone handsets)", "mfnPct": 4.9, "verified": false },
+    { "hts": "8517.62.00.90", "description": "Machines for reception/transmission of data (wireless)", "mfnPct": 0, "verified": false },
+    { "hts": "8507.60.00.20", "description": "Lithium-ion batteries / power banks", "mfnPct": 3.4, "verified": false },
+    { "hts": "9506.91.00.30", "description": "Articles and equipment for general physical exercise", "mfnPct": 4.6, "verified": false },
+    { "hts": "3924.10.40.00", "description": "Plastic (incl. silicone) tableware and kitchenware", "mfnPct": 3.4, "verified": false },
+    { "hts": "7323.93.00.80", "description": "Stainless steel household articles", "mfnPct": 2, "verified": false },
+    { "hts": "6307.90.98.91", "description": "Other made-up textile articles", "mfnPct": 7, "verified": false },
+    { "hts": "3304.99.50.00", "description": "Beauty or make-up preparations, other", "mfnPct": 0, "verified": false },
+    { "hts": "9503.00.00.90", "description": "Toys, other", "mfnPct": 0, "verified": false },
+    { "hts": "9403.20.00.90", "description": "Metal furniture, other", "mfnPct": 0, "verified": false }
+  ]
+}

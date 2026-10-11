@@ -1,0 +1,27 @@
+{
+  "dataset": "freight-assumptions",
+  "updatedAt": "2026-10-10",
+  "notes": [
+    "Deterministic, editable assumptions — NOT live quotes. Serious importers should overwrite these with their forwarder's quote per deal.",
+    "Origin: South China ports → US West Coast → FBA. Live rates (Freightos/Searates) are a roadmap provider."
+  ],
+  "verified": false,
+  "modes": {
+    "express": { "label": "Express courier (DHL/UPS/FedEx)", "ratePerKg": 7.5, "volumetricDivisor": 5000, "fixed": 0, "transitDays": 6, "includesBrokerage": true },
+    "air": { "label": "Air freight (door-to-door)", "ratePerKg": 5.8, "volumetricDivisor": 6000, "fixed": 150, "transitDays": 12, "includesBrokerage": false },
+    "lcl": { "label": "Ocean LCL", "ratePerCbm": 140, "minCbm": 1, "fixed": 450, "transitDays": 40, "includesBrokerage": false },
+    "fcl20": { "label": "Ocean FCL 20'", "perContainer": 2600, "usableCbm": 28, "fixed": 600, "transitDays": 35, "includesBrokerage": false },
+    "fcl40hq": { "label": "Ocean FCL 40'HQ", "perContainer": 3400, "usableCbm": 68, "fixed": 700, "transitDays": 35, "includesBrokerage": false }
+  },
+  "destinationDeliveryPerCbm": 45,
+  "fbaCheckInDays": 10,
+  "customsClearanceDays": 3,
+  "orderBufferDays": 10,
+  "dropship": {
+    "parcelBaseUsd": 4.2,
+    "parcelPerKgUsd": 9,
+    "parcelTransitDays": 9,
+    "carrierClearancePerParcel": 3.5,
+    "note": "Cross-border parcel from China to US consumer. Post-de-minimis carriers charge a per-parcel clearance/brokerage fee."
+  }
+}

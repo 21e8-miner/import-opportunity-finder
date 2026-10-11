@@ -1,0 +1,28 @@
+{
+  "dataset": "playbooks",
+  "updatedAt": "2026-10-10",
+  "playbooks": [
+    {
+      "id": "fba-private-label", "status": "live", "label": "FBA Private Label",
+      "question": "Can I profitably launch vs. incumbents?",
+      "weights": { "demand": 0.25, "competition": 0.2, "margin": 0.3, "risk": 0.15, "momentum": 0.1 },
+      "defaults": { "tacosPct": 12, "returnRatePct": 4, "returnLossPctOfPrice": 50, "targetMarginPct": 20 }
+    },
+    {
+      "id": "dropship", "status": "live", "label": "Dropshipping / TikTok Shop",
+      "question": "Does it survive ads + per-parcel duty?",
+      "weights": { "demand": 0.3, "competition": 0.15, "margin": 0.25, "risk": 0.1, "momentum": 0.2 },
+      "defaults": { "returnRatePct": 8, "returnLossPctOfPrice": 70, "paymentPct": 2.9, "paymentFixed": 0.3, "payoutLagDays": 8, "targetMarginPct": 15 }
+    },
+    {
+      "id": "bulk-distribution", "status": "planned", "label": "Bulk Import / Distribution",
+      "question": "Does a container of this clear 15–25% at wholesale?",
+      "weights": { "demand": 0.2, "competition": 0.15, "margin": 0.25, "risk": 0.2, "capitalEfficiency": 0.2 }
+    },
+    { "id": "dtc-brand", "status": "planned", "label": "DTC Brand (Shopify)", "question": "Contribution margin after CAC?" },
+    { "id": "sourcing-agent", "status": "planned", "label": "B2B Sourcing Agent / Trading Co", "question": "Can I match buyer & supplier and take 5–10%?" },
+    { "id": "liquidation", "status": "planned", "label": "Liquidation / Overstock", "question": "What's this manifest worth net of grading?" },
+    { "id": "export", "status": "planned", "label": "Export / Reverse", "question": "What US goods have demand abroad?" },
+    { "id": "regulated", "status": "planned", "label": "Regulated verticals (auto, food, cosmetics, toys)", "question": "Am I even allowed to sell this?" }
+  ]
+}

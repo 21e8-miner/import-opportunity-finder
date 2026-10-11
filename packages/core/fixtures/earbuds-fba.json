@@ -1,0 +1,19 @@
+{
+  "_note": "EXAMPLE INPUTS for tests and demos — illustrative supplier/market numbers, not live data.",
+  "playbook": "fba-private-label",
+  "asOf": "2026-10-10",
+  "product": {
+    "name": "Wireless earbuds (ENC, USB-C case)",
+    "complianceCategory": "wireless-audio",
+    "htsCode": "8518.30.20.00",
+    "origin": "CN"
+  },
+  "supplier": { "unitCost": 7.2, "moq": 500, "packagingPerUnit": 0.45, "inspectionFlat": 300, "samplesFlat": 120, "productionDays": 25, "depositPct": 30 },
+  "carton": { "lengthCm": 50, "widthCm": 40, "heightCm": 30, "weightKg": 12, "unitsPerCarton": 50 },
+  "unitPackage": { "lengthIn": 4.5, "widthIn": 3.5, "heightIn": 1.8, "weightLb": 0.35 },
+  "freight": { "mode": "auto" },
+  "sales": { "price": 29.99, "unitsPerMonth": 180, "tacosPct": 15, "returnRatePct": 6 },
+  "market": { "monthlySearches": 38000, "medianReviewsTop10": 4200, "reviewGrowthPct90d": 22, "priceErosionPct90d": -8, "searchTrendPct12m": 4 },
+  "compliance": { "certsHeld": ["fcc-sdoc"] },
+  "timing": { "targetLiveDate": "2026-11-20" }
+}

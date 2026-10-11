@@ -1,0 +1,19 @@
+{
+  "_note": "EXAMPLE INPUTS for tests and demos — illustrative supplier/ad numbers, not live data.",
+  "playbook": "dropship",
+  "asOf": "2026-10-10",
+  "product": {
+    "name": "Extra-thick yoga mat (TikTok Shop)",
+    "complianceCategory": "fitness-equipment",
+    "htsCode": "9506.91.00.30",
+    "origin": "CN"
+  },
+  "supplier": { "unitCost": 6.5, "moq": 1, "productionDays": 2, "depositPct": 100 },
+  "carton": { "lengthCm": 65, "widthCm": 15, "heightCm": 15, "weightKg": 1.3, "unitsPerCarton": 1 },
+  "unitPackage": { "lengthIn": 25, "widthIn": 6, "heightIn": 6, "weightLb": 2.6 },
+  "freight": { "mode": "express" },
+  "sales": { "price": 44.99, "unitsPerMonth": 400, "returnRatePct": 7 },
+  "dropship": { "cpm": 6, "ctrPct": 1.6, "cvrPct": 3.0 },
+  "market": { "monthlySearches": 60000, "medianReviewsTop10": 9000, "searchTrendPct12m": -3 },
+  "compliance": { "certsHeld": [] }
+}

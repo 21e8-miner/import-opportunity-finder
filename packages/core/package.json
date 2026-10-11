@@ -1,0 +1,9 @@
+{
+  "name": "@iof/core",
+  "version": "0.1.0",
+  "description": "Pure, deterministic import underwriting engines: landed cost, duty pipeline, freight, FBA fees, compliance, cash cycle, scoring.",
+  "type": "module",
+  "license": "MIT",
+  "exports": { ".": "./src/index.ts" },
+  "sideEffects": false
+}

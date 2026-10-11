@@ -1,0 +1,8 @@
+{
+  "name": "@iof/rules",
+  "version": "2026.10.10",
+  "description": "Versioned, dated datasets: US tariff overlays, customs fees, Amazon FBA fees, compliance rules, freight assumptions.",
+  "type": "module",
+  "license": "MIT",
+  "exports": { ".": "./src/index.ts", "./data/*": "./data/*" }
+}

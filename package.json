@@ -1,28 +1,18 @@
 {
   "name": "import-opportunity-finder",
-  "version": "1.0.0",
-  "description": "Real-time import arbitrage opportunity finder using live API data",
-  "main": "api-server.js",
-  "scripts": {
-    "start": "node api-server.js",
-    "dev": "nodemon api-server.js"
-  },
-  "keywords": [
-    "import",
-    "arbitrage",
-    "amazon",
-    "alibaba",
-    "dropshipping"
-  ],
-  "author": "",
+  "version": "2.0.0-alpha.1",
+  "description": "Import deal underwriter: landed cost, tariffs, compliance, and cash cycle — and the exact date to place the PO.",
+  "private": true,
+  "type": "module",
   "license": "MIT",
-  "dependencies": {
-    "axios": "^1.13.5",
-    "cheerio": "^1.2.0",
-    "cors": "^2.8.6",
-    "express": "^4.22.1"
+  "engines": { "node": ">=22.18" },
+  "workspaces": ["packages/*", "apps/*"],
+  "scripts": {
+    "start": "node apps/api/server.ts",
+    "dev": "node --watch apps/api/server.ts",
+    "test": "node --test \"packages/*/test/*.test.ts\"",
+    "underwrite": "node apps/cli/underwrite.ts",
+    "typecheck": "npx -y -p typescript@5.9 tsc -p tsconfig.json"
   },
-  "devDependencies": {
-    "nodemon": "^3.0.1"
-  }
+  "repository": { "type": "git", "url": "https://github.com/21e8-miner/import-opportunity-finder.git" }
 }

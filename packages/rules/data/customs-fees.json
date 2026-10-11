@@ -1,0 +1,31 @@
+{
+  "dataset": "us-customs-fees",
+  "updatedAt": "2026-10-10",
+  "notes": [
+    "MPF/HMF are statutory/user fees indexed by fiscal year. Brokerage, ISF and bond are market assumptions — replace with your broker's quote.",
+    "Formal entry required when shipment value exceeds formalEntryThreshold. De minimis (Section 321) is suspended — see deMinimis below."
+  ],
+  "formalEntryThreshold": 2500,
+  "mpf": [
+    { "id": "mpf.fy2024", "ratePct": 0.3464, "min": 31.67, "max": 614.35, "informalFlat": 2.53, "effectiveFrom": "2023-10-01", "effectiveTo": "2024-10-01", "source": "CBP FY2024 user fee notice", "verified": false },
+    { "id": "mpf.fy2025", "ratePct": 0.3464, "min": 32.71, "max": 634.62, "informalFlat": 2.62, "effectiveFrom": "2024-10-01", "effectiveTo": "2025-10-01", "source": "CBP FY2025 user fee notice", "verified": false },
+    { "id": "mpf.fy2026", "ratePct": 0.3464, "min": 33.58, "max": 651.5, "informalFlat": 2.69, "effectiveFrom": "2025-10-01", "effectiveTo": "2026-10-01", "source": "CBP FY2026 user fee notice", "verified": false },
+    { "id": "mpf.fy2027", "ratePct": 0.3464, "min": 34.58, "max": 670.86, "informalFlat": 2.77, "effectiveFrom": "2026-10-01", "effectiveTo": null, "source": "CBP FY2027 user fee notice (informalFlat estimated)", "verified": false }
+  ],
+  "hmf": [
+    { "id": "hmf.base", "ratePct": 0.125, "appliesTo": ["lcl", "fcl20", "fcl40hq"], "effectiveFrom": "1987-01-01", "effectiveTo": null, "source": "19 CFR 24.24", "verified": true }
+  ],
+  "deMinimis": [
+    { "id": "deminimis.cn.suspended", "origin": ["CN", "HK"], "available": false, "effectiveFrom": "2025-05-02", "effectiveTo": null, "source": "EO 14256; CBP regs (2026-06) under Tariff Act authority; upheld CIT 2026-08-13", "verified": false },
+    { "id": "deminimis.global.suspended", "origin": ["*"], "available": false, "effectiveFrom": "2025-08-29", "effectiveTo": null, "source": "EO 14324; statutory repeal effective 2027-07-01 (OBBBA)", "verified": false },
+    { "id": "deminimis.global.pre2025", "origin": ["*"], "available": true, "thresholdUsd": 800, "effectiveFrom": "2016-03-10", "effectiveTo": "2025-08-29", "source": "TFTEA §901 (19 USC 1321)", "verified": true }
+  ],
+  "assumptions": {
+    "brokeragePerEntry": 125,
+    "isfFilingPerEntry": 35,
+    "singleEntryBondPctOfValuePlusDuty": 0.5,
+    "singleEntryBondMin": 60,
+    "verified": false,
+    "note": "Market assumptions; typical US broker pricing. Edit per deal."
+  }
+}

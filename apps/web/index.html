@@ -1,0 +1,196 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Import Underwriter — Deal Evidence Terminal</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+<main class="shell">
+  <header class="top">
+    <div>
+      <div class="eyebrow">Import Opportunity Finder v2 · Underwriting Engine</div>
+      <h1>Scanner tells you what sells.<br />Underwriting tells you if the deal survives.</h1>
+      <p class="lead">Deterministic landed cost, dated tariff stacks, compliance gating, working-capital trough, and the latest safe PO date. Every assumption is editable and carries provenance; no simulated market data is loaded by default.</p>
+    </div>
+    <div class="actions no-print">
+      <select id="exampleSelect" aria-label="Load example deal">
+        <option value="">Load example input…</option>
+      </select>
+      <button type="button" id="newBlank" class="ghost">Blank deal</button>
+      <label class="btn ghost">Open deal.json<input id="fileIn" type="file" accept=".json,application/json" /></label>
+      <button type="button" id="downloadJson" class="ghost">Export JSON</button>
+      <button type="button" id="shareBtn">Copy share link</button>
+      <button type="button" id="printBtn" class="ghost">Print / PDF</button>
+      <button type="button" id="changelogBtn" class="ghost">Rules changelog</button>
+    </div>
+  </header>
+
+  <div class="notice" id="statusBar">
+    <strong>NO DEAL LOADED.</strong> Pick an example input above, open a <code>deal.json</code> file, or click <em>Blank deal</em> to enter your own numbers. Example fixtures are illustrative inputs for the engine — not live market observations.
+  </div>
+
+  <div class="grid-main">
+    <!-- Left: live editable deal & assumption inputs -->
+    <form id="dealForm" class="panel no-print" novalidate>
+      <div class="panel-head">
+        <h2>Deal &amp; assumptions</h2>
+        <span class="sub" id="rulesetTag">rules —</span>
+      </div>
+
+      <fieldset>
+        <legend>Playbook &amp; product</legend>
+        <div class="fields">
+          <label>Playbook
+            <select data-path="playbook">
+              <option value="fba-private-label">FBA Private Label</option>
+              <option value="dropship">Dropshipping / TikTok Shop</option>
+            </select>
+          </label>
+          <label>Rules as-of date
+            <input type="date" data-path="asOf" />
+          </label>
+          <label class="full">Product name
+            <input type="text" data-path="product.name" placeholder="e.g., Wireless earbuds" />
+          </label>
+          <label class="full">Compliance category
+            <select data-path="product.complianceCategory" id="catSelect"></select>
+          </label>
+          <label class="full">HTS code (10-digit)
+            <div class="inline-row">
+              <input type="text" data-path="product.htsCode" placeholder="8518.30.20.00" />
+              <button type="button" id="usitcBtn" class="ghost" title="Fetch MFN rate from USITC REST API">USITC</button>
+            </div>
+          </label>
+          <label>Origin (ISO-2)
+            <input type="text" data-path="product.origin" maxlength="2" />
+          </label>
+          <label>MFN rate % (override)
+            <input type="number" step="0.1" data-path="product.mfnRatePct" placeholder="from table" />
+          </label>
+          <label class="full">Steel/aluminum content % (§232)
+            <input type="number" step="1" min="0" max="100" data-path="product.metalContentPct" placeholder="leave blank if none" />
+          </label>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Supplier &amp; order</legend>
+        <div class="fields">
+          <label>Unit cost FOB ($)
+            <input type="number" step="0.01" min="0" data-path="supplier.unitCost" />
+          </label>
+          <label>Order qty (MOQ)
+            <input type="number" step="1" min="1" data-path="supplier.moq" />
+          </label>
+          <label>Packaging $/unit
+            <input type="number" step="0.01" min="0" data-path="supplier.packagingPerUnit" />
+          </label>
+          <label>QC inspection flat ($)
+            <input type="number" step="1" min="0" data-path="supplier.inspectionFlat" />
+          </label>
+          <label>Samples flat ($)
+            <input type="number" step="1" min="0" data-path="supplier.samplesFlat" />
+          </label>
+          <label>Production days
+            <input type="number" step="1" min="1" data-path="supplier.productionDays" />
+          </label>
+          <label>Deposit %
+            <input type="number" step="5" min="0" max="100" data-path="supplier.depositPct" />
+          </label>
+          <label>Freight mode
+            <select data-path="freight.mode">
+              <option value="auto">Auto (cheapest ocean)</option>
+              <option value="lcl">Ocean LCL</option>
+              <option value="fcl20">Ocean FCL 20'</option>
+              <option value="fcl40hq">Ocean FCL 40'HQ</option>
+              <option value="air">Air freight</option>
+              <option value="express">Express courier</option>
+            </select>
+          </label>
+        </div>
+      </fieldset>
+
+      <fieldset id="fsCarton">
+        <legend>Master carton (metric) &amp; unit box (in/lb)</legend>
+        <div class="fields">
+          <label>Carton L (cm)<input type="number" step="1" data-path="carton.lengthCm" /></label>
+          <label>Carton W (cm)<input type="number" step="1" data-path="carton.widthCm" /></label>
+          <label>Carton H (cm)<input type="number" step="1" data-path="carton.heightCm" /></label>
+          <label>Carton wt (kg)<input type="number" step="0.1" data-path="carton.weightKg" /></label>
+          <label class="full">Units / carton<input type="number" step="1" min="1" data-path="carton.unitsPerCarton" /></label>
+          <label>Unit L (in)<input type="number" step="0.1" data-path="unitPackage.lengthIn" /></label>
+          <label>Unit W (in)<input type="number" step="0.1" data-path="unitPackage.widthIn" /></label>
+          <label>Unit H (in)<input type="number" step="0.1" data-path="unitPackage.heightIn" /></label>
+          <label>Unit wt (lb)<input type="number" step="0.01" data-path="unitPackage.weightLb" /></label>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Sales &amp; marketing</legend>
+        <div class="fields">
+          <label>Sale price ($)<input type="number" step="0.01" data-path="sales.price" /></label>
+          <label>Units / month<input type="number" step="1" min="1" data-path="sales.unitsPerMonth" /></label>
+          <label class="fba-only">TACOS %<input type="number" step="0.5" data-path="sales.tacosPct" /></label>
+          <label>Return rate %<input type="number" step="0.5" data-path="sales.returnRatePct" /></label>
+          <label class="ds-only">Ad CPM ($)<input type="number" step="0.5" data-path="dropship.cpm" /></label>
+          <label class="ds-only">Ad CTR %<input type="number" step="0.1" data-path="dropship.ctrPct" /></label>
+          <label class="ds-only">Store CVR %<input type="number" step="0.1" data-path="dropship.cvrPct" /></label>
+          <label class="fba-only full">Target go-live date (for PO deadline)
+            <input type="date" data-path="timing.targetLiveDate" />
+          </label>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Certifications already held</legend>
+        <div class="checks" id="certChecks"></div>
+      </fieldset>
+
+      <fieldset>
+        <legend>Market signals (optional — blank = excluded)</legend>
+        <div class="fields">
+          <label>Monthly searches<input type="number" step="100" data-path="market.monthlySearches" placeholder="unknown" /></label>
+          <label>Top-10 median reviews<input type="number" step="10" data-path="market.medianReviewsTop10" placeholder="unknown" /></label>
+          <label>Review growth 90d %<input type="number" step="1" data-path="market.reviewGrowthPct90d" placeholder="unknown" /></label>
+          <label>Price Δ 90d %<input type="number" step="1" data-path="market.priceErosionPct90d" placeholder="unknown" /></label>
+          <label class="full">Search trend 12m %<input type="number" step="1" data-path="market.searchTrendPct12m" placeholder="unknown" /></label>
+        </div>
+      </fieldset>
+
+      <fieldset class="fba-only">
+        <legend>Editable rate overrides (forwarder / broker quotes)</legend>
+        <div class="fields">
+          <label>LCL $/CBM<input type="number" step="5" data-path="overrides.freightRatePerCbm" placeholder="140" /></label>
+          <label>Air $/kg<input type="number" step="0.1" data-path="overrides.airRatePerKg" placeholder="5.80" /></label>
+          <label>Brokerage $<input type="number" step="5" data-path="overrides.brokeragePerEntry" placeholder="125" /></label>
+          <label>FBA fee $<input type="number" step="0.05" data-path="overrides.fbaFulfillmentFee" placeholder="from card" /></label>
+          <label>Referral %<input type="number" step="0.5" data-path="overrides.referralPct" placeholder="from category" /></label>
+          <label>Transit days<input type="number" step="1" data-path="overrides.transitDays" placeholder="from mode" /></label>
+        </div>
+      </fieldset>
+    </form>
+
+    <!-- Right: The Underwriting Report -->
+    <section id="reportRoot">
+      <div class="panel"><div class="empty">No deal loaded. Select an example input or click <em>Blank deal</em> to generate an underwriting report.</div></div>
+    </section>
+  </div>
+
+  <p class="bottom">
+    Methodological note: the core engine is pure and deterministic — given the same deal JSON and ruleset version, it produces the same report offline. Rules flagged <span class="prov unverified">⚠ unverified</span> were seeded from secondary sources and must be confirmed against primary sources (HTSUS, Federal Register, USTR, CBP CSMS, Seller Central) before committing capital. Not legal, customs, or financial advice.
+  </p>
+</main>
+
+<dialog id="changelogModal">
+  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:8px">
+    <strong>Rules Changelog</strong>
+    <button type="button" id="closeModal" class="ghost">Close</button>
+  </div>
+  <pre id="changelogBody">Loading…</pre>
+</dialog>
+
+<script type="module" src="/app.js"></script>
+</body>
+</html>
